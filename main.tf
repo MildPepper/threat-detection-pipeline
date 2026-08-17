@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "raw_events" {
-  bucket = "threat-engine-raw-event"  # replace with your EXACT bucket name
+  bucket = "threat-engine-raw-event" # replace with your EXACT bucket name
 }
 
 resource "aws_dynamodb_table" "threat_records" {
