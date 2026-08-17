@@ -22,6 +22,9 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
 
+      - name: Package Lambda function
+        run: zip lambda_function.zip lambda_function.py	
+
       - name: Terraform Init
         run: terraform init -backend=false
 
