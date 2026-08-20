@@ -263,3 +263,25 @@ resource "aws_lambda_function" "threat_evaluator" {
     mode = "Active"
   }
 }
+
+
+resource "aws_dynamodb_table" "login_attempts" {
+  name         = "login-attempts"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "source_ip"
+
+  attribute {
+    name = "source_ip"
+    type = "S"
+  }
+
+  ttl {
+    attribute_name = "expires_at"
+    enabled        = true
+  }
+
+  server_side_encryption {
+    enabled     = true
+    kms_key_arn = aws_kms_key.threat_engine_key.arn
+  }
+}
